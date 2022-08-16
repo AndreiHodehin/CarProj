@@ -6,6 +6,7 @@ import entity.Car;
 import entity.CarToUser;
 import entity.User;
 
+import java.util.List;
 import java.util.Set;
 
 public class Main {
@@ -16,10 +17,9 @@ public class Main {
         CarToUserDao carToUserDao = daoFactory.getCarToUserDao();
         UserDao userDao = daoFactory.getUserDao();
 
-        User user = userDao.getUserByNamePass("user","user");
-        System.out.println(user);
-
-        Car car = carDao.getCarById(3);
-        carToUserDao.addCarToUser(car,user);
+        List<Car> carList = (List<Car>) carDao.getAllCar();
+        for (Car car:carList     ) {
+            System.out.println(car);
+        }
     }
 }

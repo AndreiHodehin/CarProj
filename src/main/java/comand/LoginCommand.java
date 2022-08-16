@@ -19,7 +19,7 @@ public class LoginCommand implements  Command {
         String result = (user == null) ? "login.jsp" : "controller?action=main";
 
         if(user == null) {
-            request.setAttribute("notExist", "this user not exist");
+            request.setAttribute("notExists", "this user not exist");
         } else {
             request.getSession().setAttribute("user", user);
         }

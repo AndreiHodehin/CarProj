@@ -88,13 +88,14 @@ public class UserDao extends AbstractDao{
             statement.setString(2,password);
             ResultSet rs = statement.executeQuery();
 
-            rs.next();
+            if(rs.next()) {
 
-            user = new User();
-            user.setId(rs.getInt("id"));
-            user.setName(name);
-            user.setPassword(password);
-            user.setAdmin(rs.getBoolean("admin"));
+                user = new User();
+                user.setId(rs.getInt("id"));
+                user.setName(name);
+                user.setPassword(password);
+                user.setAdmin(rs.getBoolean("admin"));
+            }
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -19,6 +19,7 @@ public class CommandFactory {
         commands.put("carToUser", new CarToUserCommand());
         commands.put("logOut", new LogOutCommand());
         commands.put("login", new LoginCommand());
+        commands.put("carsSet" , new CarSetCommand());
     }
 
     public static CommandFactory getInstance(){

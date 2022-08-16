@@ -19,10 +19,11 @@
                     <p><a href="addCar.jsp">addCar</a></p>
                     <p><a href="controller?action=logOut">LogOut</a></p>
                 </jstl:if>
+                <jstl:if test="${sessionScope.user.admin == false}">
                 <p>${sessionScope.user.name}</p>
-                <p><a href="carToUser.jsp">Add Car to User</a></p>
+                <p><a href="controller?action=carsSet">Add Car to User</a></p>
                 <p><a href="controller?action=logOut">LogOut</a></p>
-
+                </jstl:if>
             </jstl:when>
             <jstl:otherwise>
                 <p><a href="register.jsp">Register</a> </p>
