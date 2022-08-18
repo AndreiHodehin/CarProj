@@ -20,6 +20,11 @@ public class CommandFactory {
         commands.put("logOut", new LogOutCommand());
         commands.put("login", new LoginCommand());
         commands.put("carsSet" , new CarSetCommand());
+        commands.put("getRentedCar", new RentedCarCommand());
+        commands.put("cancelRent", new CancelRentCommand());
+        commands.put("adminStopRent", new AdminStopRentCommand());
+        commands.put("allCars",new AllCarsCommand());
+        commands.put("allUsers", new AllUsersCommand());
     }
 
     public static CommandFactory getInstance(){

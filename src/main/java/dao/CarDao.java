@@ -72,11 +72,13 @@ public class CarDao extends AbstractDao {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
                 int price = rs.getInt("price");
+                boolean rent = rs.getBoolean("rent");
 
                 Car car = new Car();
                 car.setId(id);
                 car.setName(name);
                 car.setPrice(price);
+                car.setRented(rent);
                 cars.add(car);
             }
 
@@ -104,6 +106,7 @@ public class CarDao extends AbstractDao {
             car.setId(id);
             car.setName(rs.getString("name"));
             car.setPrice(rs.getInt("price"));
+            car.setRented(rs.getBoolean("rent"));
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -130,9 +133,66 @@ public class CarDao extends AbstractDao {
             car.setId(rs.getInt("id"));
             car.setName(rs.getString("name"));
             car.setPrice(rs.getInt("price"));
+            car.setRented(rs.getBoolean("rent"));
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return car;
+    }
+
+    public void getRent(int id) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+
+        try{
+            connection = getConnection();
+            statement = connection.prepareStatement("update  car set rent = true where id = ?");
+
+            statement.setInt(1,id);
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void cancelTheRent(int id) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+
+        try{
+            connection = getConnection();
+            statement = connection.prepareStatement("update  car set rent = false where id = ?");
+
+            statement.setInt(1,id);
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public int deleteCarByCarId(int carId) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        int result = 0;
+        DaoFactory daoFactory = DaoFactory.getInstance();
+        CarToUserDao carToUserDao = daoFactory.getCarToUserDao();
+        Car car = carToUserDao.getCarById(carId);
+        if(car.isRented()) {
+            return result;
+        }
+
+        try {
+            connection = getConnection();
+            statement = connection.prepareStatement("delete from car where id = ?");
+
+            statement.setInt(1,carId);
+
+            result = statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 }

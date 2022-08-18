@@ -20,6 +20,6 @@ public class AddCarCommand implements Command {
         CarDao carDao = daoFactory.getCarDao();
 
         carDao.addCar(car);
-        return "main.jsp";
+        return "addCar.jsp";
     }
 }

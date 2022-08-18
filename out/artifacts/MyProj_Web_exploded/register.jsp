@@ -18,15 +18,21 @@
 </jstl:if>
 
 <form method="post" action="controller?action=register">
-    <p><input type="text" name="name" size="10"/></p>
-    <p><input type="password" name="password" size="10" /></p>
-    <p>
+    <br/>
+    <br/>
+    <h2 align="center">Registration page</h2>
+    <br/>
+    <p align="center">Enter name</p>
+    <p align="center"><input type="text" name="name" size="10"/></p>
+    <p align="center">Enter password</p>
+    <p align="center"><input type="password" name="password" size="10" /></p>
+    <p align="center">
         <select size="3" name="admin">
             <option value = "true">Admin</option>
             <option value = "false">User</option>
         </select>
     </p>
-    <p><input type="submit" value="Register" /></p>
+    <p align="center"><input type="submit" value="Register" /></p>
 
 
 </form>

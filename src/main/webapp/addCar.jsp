@@ -12,11 +12,18 @@
     </title>
 </head>
 <body>
-<form method="post" action="controller?action=addCar">
+<br/>
+<h1 align="center"> Add car to database </h1>
+<br/>
+<h2 align="center">Enter the form</h2>
+
+<form align="center" method="post" action="controller?action=addCar">
+    <p align="center">Mark of the car</p>
     <p><input type="text" name="name" size="10" ></p>
+    <p align="center">Price per month</p>
     <p><input type="text" name="price" size="10" /></p>
     <p><input type="submit" value="Add" /></p>
-
 </form>
+<p align="center"> <button><a href="main.jsp">Back</a></button></p>
 </body>
 </html>

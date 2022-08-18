@@ -1,5 +1,7 @@
 package dao;
 
+import entity.Car;
+import entity.CarToUser;
 import entity.User;
 
 import java.sql.Connection;
@@ -7,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class UserDao extends AbstractDao{
@@ -129,5 +132,27 @@ public class UserDao extends AbstractDao{
             e.printStackTrace();
         }
         return userSet;
+    }
+
+    public int deleteUserById(int userId) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        int result = 0;
+        DaoFactory daoFactory = DaoFactory.getInstance();
+        CarToUserDao carToUserDao = daoFactory.getCarToUserDao();
+        List<CarToUser> list = carToUserDao.getInfoAboutUserCars(userId);
+        if(!list.isEmpty()){return result;}
+
+        try{
+            connection = getConnection();
+            statement = connection.prepareStatement("delete from user where id = ?");
+
+            statement.setInt(1,userId);
+
+            result = statement.executeUpdate();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return result;
     }
 }

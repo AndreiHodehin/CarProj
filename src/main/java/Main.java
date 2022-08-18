@@ -17,9 +17,8 @@ public class Main {
         CarToUserDao carToUserDao = daoFactory.getCarToUserDao();
         UserDao userDao = daoFactory.getUserDao();
 
-        List<Car> carList = (List<Car>) carDao.getAllCar();
-        for (Car car:carList     ) {
-            System.out.println(car);
-        }
+
+        int carId = 3;
+        carDao.cancelTheRent(carId);
     }
 }

@@ -5,6 +5,7 @@ public class Car {
     private int id;
     private String name;
     private int price;
+    private boolean rented = false;
 
     public Car() {
     }
@@ -12,6 +13,14 @@ public class Car {
     public Car( String name, int price) {
         this.name = name;
         this.price = price;
+    }
+
+    public boolean isRented() {
+        return rented;
+    }
+
+    public void setRented(boolean rented) {
+        this.rented = rented;
     }
 
     public int getId() {
@@ -44,6 +53,7 @@ public class Car {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
+                ", rented=" + rented +
                 '}';
     }
 }

@@ -16,9 +16,9 @@ public class MainCommand implements Command {
         User user = (User) request.getSession().getAttribute("user");
 
 
-            CarDao carDao = daoFactory.getCarDao();
-            List<Car> carList = (List<Car>) carDao.getAllCar();
-            request.setAttribute("allCars", carList);
+//            CarDao carDao = daoFactory.getCarDao();
+//            List<Car> carList = (List<Car>) carDao.getAllCar();
+//            request.setAttribute("allCars", carList);
 
 
         return "main.jsp";

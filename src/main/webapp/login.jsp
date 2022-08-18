@@ -13,12 +13,12 @@
 </head>
 <body>
 <jstl:if test="${not empty requestScope.notExists}">
-    <p>Tis user not exist</p>
+    <p align="canter">Tis user not exist</p>
 </jstl:if>
 
 
-<h2>Enter your credentials</h2>
-<form action="controller?action=login" method="post">
+<h2 align="center">Enter your credentials</h2>
+<form align="center" action="controller?action=login" method="post">
     <p>Login: </p>
     <input type="text" name="name"/>
     <br/>
