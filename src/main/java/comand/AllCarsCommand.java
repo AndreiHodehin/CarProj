@@ -28,5 +28,8 @@ public class AllCarsCommand implements Command{
         List<Car> carList = carDao.getAllCar();
         request.setAttribute("allCars",carList);
         return "allCars.jsp";
+
+
+
     }
 }
