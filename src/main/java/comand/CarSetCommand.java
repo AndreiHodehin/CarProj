@@ -18,11 +18,11 @@ public class CarSetCommand implements Command{
             CarDao carDao = daoFactory.getCarDao();
             CarToUserDao carToUserDao = daoFactory.getCarToUserDao();
 
-            List<Car> carList = (List<Car>) carDao.getAllCar();
+            List<Car> carList =  carDao.getAllCar();
             request.getSession().setAttribute("allCars",carList);
 
             User user = (User) request.getSession().getAttribute("user");
-            List<CarToUser> carListOfUser = carToUserDao.getInfoAboutUserCars(user.getId());
+            List<CarToUser> carListOfUser = carToUserDao.getUserCars(user.getId());
 
             request.getSession().setAttribute("clientCars",carListOfUser);
 

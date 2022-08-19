@@ -18,7 +18,8 @@ public class Main {
         UserDao userDao = daoFactory.getUserDao();
 
 
-        int carId = 3;
-        carDao.cancelTheRent(carId);
+        int carId = 9;
+        Car car = carDao.getCarById(carId);
+        System.out.println(car);
     }
 }

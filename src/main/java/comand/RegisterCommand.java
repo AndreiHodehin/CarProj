@@ -6,7 +6,6 @@ import entity.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.HashSet;
 import java.util.Set;
 
 public class RegisterCommand implements Command{

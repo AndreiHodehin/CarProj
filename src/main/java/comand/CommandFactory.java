@@ -27,8 +27,8 @@ public class CommandFactory {
         commands.put("allUsers", new AllUsersCommand());
     }
 
-    public static CommandFactory getInstance(){
-        if(commandFactory == null){
+    public static CommandFactory getInstance() {
+        if(commandFactory == null) {
             return new CommandFactory();
         }
         return commandFactory;

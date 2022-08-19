@@ -41,7 +41,7 @@
 
         <p><label>Enter user id for deleting
             <br>
-            <input type="text" name="userId">
+            <input type="number" name="userId">
         </label></p>
         <p><input type="submit" value="Delete"></p>
 

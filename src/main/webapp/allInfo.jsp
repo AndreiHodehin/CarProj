@@ -47,12 +47,12 @@
 
     <p><label>User id for stop rent
         <br>
-        <input type="text" name="userId">
+        <input type="number" name="userId">
     </label></p>
 
     <p><label>Car for stop rent:
         <br>
-        <input type="text" name="carId" />
+        <input type="number" name="carId" />
     </label></p>
     <p><input type="submit" value="Stop rent"></p>
 

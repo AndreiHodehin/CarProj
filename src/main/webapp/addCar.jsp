@@ -5,6 +5,7 @@
   Time: 16:19
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -16,6 +17,10 @@
 <h1 align="center"> Add car to database </h1>
 <br/>
 <h2 align="center">Enter the form</h2>
+
+<jstl:if test="${not empty badInput}">
+    <h3 align="center">${badInput}</h3>
+</jstl:if>
 
 <form align="center" method="post" action="controller?action=addCar">
     <p align="center">Mark of the car</p>

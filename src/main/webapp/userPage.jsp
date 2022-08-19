@@ -23,18 +23,19 @@
 
 <h1 align="center"> Choose your car!!!</h1>
 
+
+<h3 align="center">Available cars in garage</h3>
+
 <jstl:if test="${not empty notAdd}">
     <h3 align="center">${notAdd}</h3>
 </jstl:if>
 
 
-<h3 align="center">Available cars in garage</h3>
 <table align="center" >
     <tr>
         <th>№</th>
         <th>Mark</th>
         <th>Price</th>
-        <th>is Rent</th>
 
     </tr>
 
@@ -44,7 +45,6 @@
             <td><jstl:out value="${cars.id}"/></td>
             <td><jstl:out value="${cars.name}"/></td>
             <td><jstl:out value="${cars.price}"/></td>
-            <td><jstl:out value="${cars.rented}"/></td>
         </tr>
         </jstl:if>
 
@@ -82,6 +82,9 @@
     </jstl:forEach>
 </table>
 
+<jstl:if test="${not empty notDeleted}">
+    <h3 align="center">${notDeleted}</h3>
+</jstl:if>
 
 <h3 align="center">Stop renting car</h3>
 <form align="center" method="post" action="controller?action=cancelRent">

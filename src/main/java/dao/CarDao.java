@@ -8,9 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class CarDao extends AbstractDao {
 
@@ -28,8 +26,9 @@ public class CarDao extends AbstractDao {
     }
 
     public Car addCar(Car car) {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
+
+        Connection connection ;
+        PreparedStatement preparedStatement ;
 
         try {
             connection = getConnection();
@@ -38,7 +37,7 @@ public class CarDao extends AbstractDao {
             preparedStatement.setString(1, car.getName());
             preparedStatement.setInt(2, car.getPrice());
 
-            int result = preparedStatement.executeUpdate();
+            preparedStatement.executeUpdate();
 
             preparedStatement = connection.prepareStatement("select id from car where name= ?");
 
@@ -59,8 +58,8 @@ public class CarDao extends AbstractDao {
 
         List<Car> cars = new ArrayList<>();
 
-        Connection connection = null;
-        PreparedStatement statement = null;
+        Connection connection ;
+        PreparedStatement statement ;
 
         try {
             connection = getConnection();
@@ -89,10 +88,11 @@ public class CarDao extends AbstractDao {
     }
 
     public Car getCarById(int id) {
-        Car car = new Car();
 
-        Connection connection = null;
-        PreparedStatement statement = null;
+        Car car = null;
+
+        Connection connection ;
+        PreparedStatement statement ;
 
         try {
             connection = getConnection();
@@ -103,6 +103,7 @@ public class CarDao extends AbstractDao {
             ResultSet rs = statement.executeQuery();
             rs.next();
 
+            car = new Car();
             car.setId(id);
             car.setName(rs.getString("name"));
             car.setPrice(rs.getInt("price"));
@@ -110,15 +111,17 @@ public class CarDao extends AbstractDao {
 
         } catch (SQLException e) {
             e.printStackTrace();
+            return null;
         }
         return car;
     }
 
     public Car getCarByName(String name) {
+
         Car car = new Car();
 
-        Connection connection = null;
-        PreparedStatement statement = null;
+        Connection connection ;
+        PreparedStatement statement ;
 
         try {
 
@@ -141,8 +144,9 @@ public class CarDao extends AbstractDao {
     }
 
     public void getRent(int id) {
-        Connection connection = null;
-        PreparedStatement statement = null;
+
+        Connection connection ;
+        PreparedStatement statement ;
 
         try{
             connection = getConnection();
@@ -155,9 +159,11 @@ public class CarDao extends AbstractDao {
             e.printStackTrace();
         }
     }
+
     public void cancelTheRent(int id) {
-        Connection connection = null;
-        PreparedStatement statement = null;
+
+        Connection connection ;
+        PreparedStatement statement ;
 
         try{
             connection = getConnection();
@@ -172,13 +178,15 @@ public class CarDao extends AbstractDao {
     }
 
     public int deleteCarByCarId(int carId) {
-        Connection connection = null;
-        PreparedStatement statement = null;
+
+        Connection connection ;
+        PreparedStatement statement ;
         int result = 0;
+
         DaoFactory daoFactory = DaoFactory.getInstance();
         CarToUserDao carToUserDao = daoFactory.getCarToUserDao();
         Car car = carToUserDao.getCarById(carId);
-        if(car.isRented()) {
+        if(car == null || car.isRented()) {
             return result;
         }
 

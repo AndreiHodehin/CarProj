@@ -10,6 +10,7 @@ import java.util.Set;
 public class AllUsersCommand implements Command{
     @Override
     public String execute(HttpServletRequest request) {
+
         DaoFactory daoFactory = DaoFactory.getInstance();
         UserDao userDao = daoFactory.getUserDao();
 

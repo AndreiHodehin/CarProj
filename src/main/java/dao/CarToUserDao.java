@@ -14,8 +14,8 @@ public class CarToUserDao extends AbstractDao{
 
     private static CarToUserDao carToUserDao;
     private CarToUserDao() {
-
     }
+
     public static CarToUserDao getInstance(){
         if(carToUserDao == null) {
             return new CarToUserDao();
@@ -23,9 +23,11 @@ public class CarToUserDao extends AbstractDao{
         return carToUserDao;
     }
 
-    public void addCarToUser(Car car, User user) {
-        Connection connection = null;
-        PreparedStatement statement = null;
+    public int addCarToUser(Car car, User user) {
+
+        Connection connection ;
+        PreparedStatement statement ;
+        int result = 0;
 
         try{
             connection = getConnection();
@@ -34,21 +36,24 @@ public class CarToUserDao extends AbstractDao{
             statement.setInt(1,user.getId());
             statement.setInt(2,car.getId());
 
-            statement.executeUpdate();
+            result = statement.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return result;
     }
 
     public Set<CarToUser> getAll() {
+
         DaoFactory daoFactory  = DaoFactory.getInstance();
         UserDao userDao = daoFactory.getUserDao();
         CarDao carDao = daoFactory.getCarDao();
 
         Set<CarToUser> carToUsers = new HashSet<>();
 
-        Connection connection = null;
-        PreparedStatement statement = null;
+        Connection connection ;
+        PreparedStatement statement ;
 
         try {
             connection = getConnection();
@@ -66,21 +71,21 @@ public class CarToUserDao extends AbstractDao{
                 carToUser.setUser(user);
                 carToUsers.add(carToUser);
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return carToUsers;
     }
-    public List<CarToUser> getInfoAboutUserCars(int id) {
+    public List<CarToUser> getUserCars(int id) {
+
         DaoFactory daoFactory  = DaoFactory.getInstance();
         UserDao userDao = daoFactory.getUserDao();
         CarDao carDao = daoFactory.getCarDao();
 
         List<CarToUser> carToUsers = new ArrayList<>();
 
-        Connection connection = null;
-        PreparedStatement statement = null;
+        Connection connection ;
+        PreparedStatement statement ;
 
         try {
             connection = getConnection();
@@ -107,9 +112,9 @@ public class CarToUserDao extends AbstractDao{
         return carToUsers;
     }
 
-    public int deleteCarFromUser(int id) {
-        Connection connection = null;
-        PreparedStatement statement = null;
+    public int deleteCarFromUserById(int id) {
+        Connection connection;
+        PreparedStatement statement;
         int result = 0;
         try{
             connection = getConnection();
@@ -117,16 +122,19 @@ public class CarToUserDao extends AbstractDao{
 
             statement.setInt(1,id);
             result = statement.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return result;
     }
 
-    public int deleteCarFromUserAdminCommand(int userId,int carId) {
-        Connection connection = null;
-        PreparedStatement statement = null;
+    public int deleteCarFromUserByUserIdAndCarId(int userId, int carId) {
+
+        Connection connection ;
+        PreparedStatement statement ;
         int result = 0;
+
         try{
             connection = getConnection();
             statement = connection.prepareStatement("delete  from user_car where user_id = ? and car_id = ?");
@@ -134,6 +142,7 @@ public class CarToUserDao extends AbstractDao{
             statement.setInt(1,userId);
             statement.setInt(2,carId);
             result = statement.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -141,8 +150,8 @@ public class CarToUserDao extends AbstractDao{
     }
 
     public Car getCarById(int carId) {
-        Connection connection = null;
-        PreparedStatement statement = null;
+        Connection connection ;
+        PreparedStatement statement;
         Car car = null;
 
         try {

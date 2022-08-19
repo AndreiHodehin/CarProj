@@ -43,7 +43,7 @@
     <form align="center" method="post" action="controller?action=allCars" >
         <p><label>Enter car id for deleting
         <br>
-            <input type="text" name="carId">
+            <input type="number" name="carId">
         </label></p>
         <input type="submit" value="Delete">
     </form>

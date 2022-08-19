@@ -1,6 +1,5 @@
 package dao;
 
-import entity.Car;
 import entity.CarToUser;
 import entity.User;
 
@@ -28,8 +27,9 @@ public class UserDao extends AbstractDao{
     }
 
     public User addUser(User user) {
-        Connection connection = null;
-        PreparedStatement statement = null;
+
+        Connection connection ;
+        PreparedStatement statement ;
 
         try{
             connection = getConnection();
@@ -53,8 +53,9 @@ public class UserDao extends AbstractDao{
     }
 
     public User getUserById(int id) {
-        Connection connection = null;
-        PreparedStatement statement = null;
+
+        Connection connection;
+        PreparedStatement statement;
 
         User user = null;
         try {
@@ -79,10 +80,12 @@ public class UserDao extends AbstractDao{
     }
 
     public User getUserByNamePass(String name,String password) {
-        Connection connection = null;
-        PreparedStatement statement = null;
+
+        Connection connection;
+        PreparedStatement statement;
 
         User user = null;
+
         try {
             connection = getConnection();
             statement = connection.prepareStatement("select id,admin from user where name = ? and password = ?");
@@ -107,8 +110,8 @@ public class UserDao extends AbstractDao{
     }
 
     public Set<User> getAllUser() {
-        Connection connection = null;
-        PreparedStatement statement = null;
+        Connection connection;
+        PreparedStatement statement;
 
         Set<User> userSet = new HashSet<>();
 
@@ -135,12 +138,14 @@ public class UserDao extends AbstractDao{
     }
 
     public int deleteUserById(int userId) {
-        Connection connection = null;
-        PreparedStatement statement = null;
+
+        Connection connection;
+        PreparedStatement statement;
         int result = 0;
+
         DaoFactory daoFactory = DaoFactory.getInstance();
         CarToUserDao carToUserDao = daoFactory.getCarToUserDao();
-        List<CarToUser> list = carToUserDao.getInfoAboutUserCars(userId);
+        List<CarToUser> list = carToUserDao.getUserCars(userId);
         if(!list.isEmpty()){return result;}
 
         try{
