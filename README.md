@@ -77,6 +77,7 @@ Step 3: Open MySql workbench > login and copy and paste the following command:
 Step 4:  Go inside src/main/java/dao/AbstractDao  and update the value of database details as per your usage, like db.driver, db.host, db.username and db.password according to your installed mysql admin user credentials. 
 
 Step 5: Connect Tomcat Server (Install, if not already installed). Run > Edit configuration > Add new configuration > Tomcat Local  and press "Fix" > choose "war exploded" artifact. 
+Set in Open browse > Url : http://localhost:8080/MyProj_Web_exploded/controller?action=main 
 
 Step 6 Use It.
 

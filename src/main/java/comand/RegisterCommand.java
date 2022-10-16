@@ -16,6 +16,10 @@ public class RegisterCommand implements Command{
         UserDao userDao = daoFactory.getUserDao();
 
         String name = request.getParameter("name");
+        if(name.isEmpty()) {
+            request.setAttribute("notAdd", "Can not be null");
+            return "register.jsp";
+        }
         String password = request.getParameter("password");
         User user = new User();
         user.setName(name);
